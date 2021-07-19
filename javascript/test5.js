@@ -35,23 +35,28 @@ console.log("------------------------------");
 const score={
     kor:100,
     eng:90,
-    math:80
+    math:80,
+    sum:function(){
+        return this.kor + this.eng+this.math;
+    }
 }
 
 const score2=new Object();
 score2.kor=100;
 score2['eng']=90;
 score2.math=80;
+score2.sum=function(){
+    return this.kor+this.eng+this.math;
+}
 
 function Score(kor,eng, math){
     this.kor=kor;
     this.eng=eng;
     this.math=math;
 }
-Score.prototype.sum1=function(kor,eng,math){
-    let sum = kor+eng+math;
-    console.log(sum);
+Score.prototype.sum1=function(){
+   return this.kor+this.eng+this.math;
 }
 let score1= new Score(100,80, 90);
 console.log(score1);
-score1.sum1(score1.kor,score1.eng,score1.math);
+score1.sum1();
