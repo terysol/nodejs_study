@@ -6,6 +6,7 @@ const upload = multer({dest:'uploads/'});
 
 
 app.use(express.static(__dirname + "/public"));  
+app.use('/img',express.static('uploads'));
 app.use(express.urlencoded({extended : true}));
 
 app.set('views', './views')

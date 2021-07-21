@@ -4,7 +4,8 @@ const port = 5000;
 const app = express();
 // const upload = multer({dest:'uploads/'});
 
-app.use(express.static(__dirname + "/public"));  
+app.use(express.static(__dirname + "/public"));
+
 app.use(express.urlencoded({extended : true}));
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
