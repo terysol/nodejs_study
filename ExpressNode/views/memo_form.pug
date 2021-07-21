@@ -1,0 +1,18 @@
+doctype html 
+html 
+    head 
+        title 메모
+    body 
+        h1 메모장
+        form(method="post" action="memo")
+            p 
+                h4 작성자 : 
+                input(type="text" name="writer")
+            p 
+                h4 작성일시 : 
+                input(type="text" name="date")
+            p 
+                h4 내용 : 
+                textarea(name='description')
+            input(type="submit" value="저장")
+            input(type="reset" value="닫기")

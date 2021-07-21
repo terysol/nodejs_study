@@ -28,7 +28,14 @@ app.get("/login",(req,res)=>{
 app.post("/login",(req,res)=>{
     let _id=req.body.id;
     let _pass= req.body.password;
-    res.send(`아이디 : ${_id}, 비밀번호 : ${_pass}`);
+    res.send(`아이디 : ${_id} 비밀번호 : ${_pass}`);
+
+})
+
+app.get("/temp",(req,res)=>{
+    let _id=req.query.id;
+    let _pass= req.query.password;
+    res.send(`아이디 : ${_id} 비밀번호 : ${_pass}`);
 })
 
 app.listen(port,()=>{
