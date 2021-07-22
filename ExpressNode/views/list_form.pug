@@ -1,0 +1,23 @@
+doctype html 
+html 
+    head 
+        title LANG PAGE 
+    body 
+        h1 
+            a(href='/lang') Server Side Javascript
+        ul 
+            each val in lists
+                li
+                    a(href="/lang/"+val)=val
+        h2=title 
+        h3=description
+        br
+        form(method='post' action='/lang')
+            input(type="text" name="title" placeholder="title")
+            br 
+            br
+            textarea(name="description" placeholder="description")
+            br
+            br
+            button(type="submit") 입력완료
+        
