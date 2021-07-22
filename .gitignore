@@ -1,6 +1,10 @@
 /nodejs 메모
 
 /BasicNode/node_modules
+
 /ExpressNode/node_modules
 /ExpressNode/uploads
 /ExpressNode/data
+/ExpressNode/message.txt
+
+/Cookie_Session/node_modules
