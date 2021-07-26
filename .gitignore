@@ -11,3 +11,5 @@
 /Cookie_Session/sessions
 
 /MongoDB_test/node_modules
+
+/Login_Mongo/node_modules
