@@ -1,0 +1,26 @@
+doctype html 
+html 
+    head 
+        title showList 
+    body 
+        h1 User List 
+        table(border="1")
+            thead 
+                tr 
+                    th 아이디
+                    th 비밀번호
+                    th 이름
+                    th 이메일
+                    th 비고
+
+            tbody
+                for user in list 
+                    tr 
+                        td=user.id 
+                        td=user.password 
+                        td=user.name 
+                        td=user.email
+                        td 
+                            a(href="/update/${user.id}") 수정 &nbsp;
+                            a(href="/delete/${user.id}") 삭제
+                    

@@ -1,0 +1,16 @@
+doctype html 
+html 
+    head 
+        title Login 
+    body 
+        h1 Sign
+        form(action="/sign" method="post")
+            p 아이디 : 
+                input(type="text" name="id")
+            p 비밀번호 : 
+                input(type="password" name="password")
+            p 이름 : 
+                input(type="text" name="name")
+            p 이메일 : 
+                input(type="text" name="email")
+            input(type="submit" value="회원가입")
