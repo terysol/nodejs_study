@@ -1,18 +1,10 @@
 const express = require("express");
-const mysql = require("mysql");
 const port = 5000; 
 const app = express();
 
 const indexRouter = require('./routes/index');
+const mysql = require('./mysql');
 
-// mysql 연동
-const conn = mysql.createConnection({
-    host:"localhost",
-    user:"root",
-    password:"mirim2",
-    database:"testdb"
-})
-conn.connect();
 
 // 쿼리를 객체로 생성
 const sql={
