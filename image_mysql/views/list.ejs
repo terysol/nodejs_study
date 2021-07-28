@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table border ="1">
+        <thead>
+            <tr>
+                <th>순번</th>
+                <th>파일명</th>
+                <th>사진</th>
+                <th>파일원래 이름</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% datas.forEach((list)=>{ %>
+                <tr>
+                    <td><%= list.id %></td>
+                    <td><%= list.file_name%></td>
+                    <td><img src="/uploads/img/<%=list.originalname%>" style="width:200px; height:200px;"></td>
+                    <td>
+                        <%= list.originalname%>
+                    </td>
+                </tr>
+            <%})%>
+        </tbody>
+    </table>
+</body>
+</html>
