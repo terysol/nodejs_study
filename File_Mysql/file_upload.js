@@ -45,18 +45,39 @@ app.locals.pretty=true;     // pug 이쁘게 만들기
 // 날짜 formatting
 const date = moment().format('YYYY-MM-DD HH:mm:ss');
 
+const sql={
+    list:'select * from file_upload order by id desc',
+    insert:'insert into file_upload(file_name) values(?)'    
+}
+
 app.get("/",(req,res)=>{
     res.render("file");
 })
 
 app.post("/upload", upload.single('image'),(req,res)=>{
-    conn.query("insert into file_upload(file_name) values(?)",[req.file.path],(err)=>{
+    conn.query(sql.insert,[req.file.path],(err)=>{
         if(err) console.log(err);
         else{
             console.log('inserted!');
             res.redirect("/");
         }
     })
+})
+
+app.get("/show",(req,res)=>{
+    conn.query(sql.list,(err,data)=>{
+        if(err) console.log(err);
+        else{
+           res.render("list",{datas:data});
+        }
+    })
+})
+
+app.get("/down/uploads/texts/:name",(req,res)=>{
+    const filename=req.params.name;
+    const file=__dirname + '\\uploads\\texts\\' + filename;
+    console.log(file);
+    res.download(file);
 })
 app.listen(port,()=>{
     console.log(`Connecting to ${port}`);

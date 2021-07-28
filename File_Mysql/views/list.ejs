@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table border ="1">
+        <thead>
+            <tr>
+                <th>순번</th>
+                <th>파일명</th>
+                <th>비고</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% datas.forEach((list)=>{ %>
+                <tr>
+                    <td><%= list.id %></td>
+                    <td><a href="/down/<%=list.file_name %>"><%= list.file_name %></a></td>
+                    <td>
+                        <a href="/update/<%=list.id %>">수정</a>&nbsp;
+                        <a href="/delete/<%=list.id %>">삭제</a>
+                    </td>
+                </tr>
+            <%})%>
+        </tbody>
+    </table>
+</body>
+</html>
