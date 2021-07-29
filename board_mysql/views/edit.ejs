@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Edit <%=datas.title%></h1>
+    <form action="/edit/<%=datas.id%>" method="post">
+        아이디 : <input type="text" value="<%=datas.id %>" disabled><br><br>
+        작성자 : <input type="text" name="writer" value="<%=datas.writer %>"><br><br>
+        제목 : <input type="text" name ="title" value="<%=datas.title%>"><br><br>
+        내용: <textarea name= "content" cols = 30 rosw=10><%=datas.content%></textarea><br><br>
+        등록일 : <input type="text" value="<%=datas.reg_date%>" disabled><br><br>
+        <input type="submit" value="수정">
+    </form>
+</body>
+</html>
