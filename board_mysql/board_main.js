@@ -4,6 +4,7 @@ const format = require("date-format");
 const moment = require("moment");
 const session = require('express-session');
 const multer =require("multer");
+const methodOverrider=require("method-override");
 var MySQLStore = require('express-mysql-session')(session);
 require("moment-timezone");
 moment.tz.setDefault("Asia/Seoul");
@@ -61,9 +62,10 @@ const sql={
     insert_board:'insert into board(writer, title, content,file_name, originalname,click,reg_date) value(?,?,?,?,?,?,?)'
     ,read:'select * from board where id = ?',
     check:'select * from user where name=?'
+    ,plus : 'update board set click=click+1 where id=?'
     ,update : 'update board set writer=?, title=?, content=? where id=?',
-    delete : 'delete from board where id=?',
-    search:'select * from board where ? like ?'
+    delete : 'delete from board where id=?'
+    // ,search:'select * from board where ? like ?'
 }
 
 app.use(session({
@@ -74,6 +76,7 @@ app.use(session({
 
 app.use(express.static(__dirname + "/public"));  
 app.use(express.urlencoded({extended : true}));
+app.use(methodOverrider('_method'));
 
 app.set('views', './views')
 // 나는 view를 사용하겠다. 
@@ -147,6 +150,12 @@ app.post("/new",upload.single('image'),(req,res)=>{
 app.get("/show/:id",(req,res)=>{
     if(req.session.user){
         const paramId=req.params.id;
+        conn.query(sql.plus,[paramId],(err)=>{
+            if(err) console.log(err);
+            else{
+                console.log('updated!');
+            }
+        })
         conn.query(sql.read,[paramId],(err,data)=>{
             if(err) console.log(err);
             else{
@@ -191,7 +200,7 @@ app.get("/edit/:id",(req,res)=>{
     })
 })
 
-app.post("/edit/:id",(req,res)=>{
+app.put("/edit/:id",(req,res)=>{
     const paramId= req.params.id;
     let _writer= req.body.writer;
     let _title = req.body.title;
@@ -205,7 +214,7 @@ app.post("/edit/:id",(req,res)=>{
     })
 })
 
-app.post("/delete/:id",(req,res)=>{
+app.delete("/delete/:id",(req,res)=>{
     const paramId= req.params.id;
     conn.query(sql.delete,[paramId],(err)=>{
         if(err) console.log(err);
@@ -219,13 +228,17 @@ app.post("/delete/:id",(req,res)=>{
 app.post("/search",(req,res)=>{
     let _category = req.body.category;
     let _keyword= req.body.keyword;
-    conn.query(sql.search,[_category,'%'+_keyword+'%'],(err,data)=>{
+    let keyword="%" + _keyword + "%";
+    
+    // console.log(_category, _keyword);
+    conn.query("select * from board where " + _category + " like '%" + _keyword + "%'" ,(err,data)=>{
         if(err) {
             console.log(err);
             return;
+        }else{
+            //console.log(data);
+            res.send(data);
         }
-        console.log(data)
-        res.send(data);
         
     })
 })
