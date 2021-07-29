@@ -19,3 +19,6 @@
 /File_Mysql/node_modules
 /image_mysql/node_modules
 /image_mysql/public
+
+/board_mysql/node_modules
+/board_mysql/uploads
